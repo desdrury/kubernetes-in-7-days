@@ -10,6 +10,7 @@ This document has links to resources that will be useful for the _Kubernetes in 
 |:----------|:--------------------------|
 | [Kubernetes Documentation](https://kubernetes.io/docs/home/)| Kubernetes documentation. |
 | [Kubernetes Tutorials](https://kubernetes.io/docs/tutorials/) | Totorials for a number of Kubernetes aspects. |
+| [Kubernetes API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/) | Detailed information on the _Kubernetes _Resources. |
 | [kubectl Installation](https://kubernetes.io/docs/tasks/tools/install-kubectl/) | Instructions for how to install `kubectl`. |
 | [kubectl Overview](https://kubernetes.io/docs/reference/kubectl/overview/) | Overview information on `kubectl`. |
 | [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) | Summary information on useful `kubectl` commands. |
