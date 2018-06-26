@@ -133,7 +133,7 @@ podTemplate(label: label,
             env.chartVersion = sh returnStdout: true, script: 'grep version Chart.yaml | sed "s/version: //"'
           }
           withCredentials([usernamePassword(credentialsId: 'chart-museum', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
-            sh 'helm repo add citopro "https://${USER}:${PASSWORD}@cchartmuseum.do.citopro.comu"'
+            sh 'helm repo add citopro "https://${USER}:${PASSWORD}@chartmuseum.do.citopro.com"'
           }
           sh 'helm repo update'
           withEnv(['CHART_VERSION=' + env.chartVersion.trim(), 'VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
