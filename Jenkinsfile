@@ -12,6 +12,12 @@ podTemplate(label: label,
       ]
     ),
     containerTemplate(
+      name: 'gitbook', 
+      image: 'fellah/gitbook', 
+      ttyEnabled: true, 
+      command: 'cat'
+    ),
+    containerTemplate(
       name: 'helm', 
       image: 'lachlanevenson/k8s-helm:v2.8.1', 
       ttyEnabled: true, 
@@ -44,6 +50,14 @@ podTemplate(label: label,
         }
       }
 
+      // Generate website
+      container('gitbook') {
+        stage('Generate website') {
+          sh 'gitbook install'
+          sh 'gitbook build'
+        }
+      }
+
       // Build and push image
       container('docker') {
         stage('Build image') {
@@ -60,8 +74,7 @@ podTemplate(label: label,
 
         stage('Push image') {
           withDockerRegistry([credentialsId: 'docker-user', url: 'https://docker-registry.do.citopro.com']) {
-            withEnv(['DOCKERLOGIN=' + env.dockerLoginCmd.trim(), 'VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
-              sh '$DOCKERLOGIN'
+            withEnv(['VERSION=' + env.VERSION.trim(), 'COMMIT=' + env.COMMIT.trim()]) {
               sh "docker push docker-registry.do.citopro.com/kube7days/documentation:${VERSION}.${COMMIT}"
               sh 'docker push docker-registry.do.citopro.com/kube7days/documentation:latest'
             }
@@ -70,71 +83,71 @@ podTemplate(label: label,
         }
       }
 
-    //   // Scan image for vulnerabilities
-    //   container('klar') {
-    //     stage('Scan image') {
-    //       withEnv(['DOCKERLOGIN=' + env.dockerLoginCmd.trim(), \
-    //         'VERSION=' + env.version.trim(), \
-    //         'COMMIT=' + env.commit.trim(), \
-    //         'CLAIR_ADDR=https://clair.kube.momenton.com.au:443', \
-    //         'CLAIR_OUTPUT=High', \
-    //         'CLAIR_THRESHOLD=21', \
-    //         'DOCKER_USER=AWS' \
-    //         ]) {
-    //         dockerPassword = sh returnStdout: true, script: "echo $DOCKERLOGIN | cut -d' ' -f6"
-    //         sh "DOCKER_PASSWORD=" + dockerPassword.trim() + " /klar 841938870680.dkr.ecr.ap-southeast-2.amazonaws.com/infrastructure-docs:${VERSION}.${COMMIT}"
-    //       }  
-    //     }
-    //   }
+      // Scan image for vulnerabilities
+      container('klar') {
+        stage('Scan image') {
+          withCredentials([usernamePassword(credentialsId: 'docker-user', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER')]) {
+            withEnv([ \
+              'VERSION=' + env.version.trim(), \
+              'COMMIT=' + env.commit.trim(), \
+              'CLAIR_ADDR=https://clair.do.citopro.com:443', \
+              'CLAIR_OUTPUT=High', \
+              'CLAIR_THRESHOLD=21'
+              ]) {
+              sh "/klar docker-registry.do.citopro.com/kube7days/documentation:${VERSION}.${COMMIT}"
+            }
+          }
+        }
+      }
 
-    //   // Package Helm Chart
-    //   container('helm') {
-    //     stage('Package Helm Chart') {
-    //       dir('charts') {
-    //         sh 'helm init --client-only'
-    //         sh 'helm package infrastructure-docs'
-    //       }
-    //     }
-    //   }
+      // Package Helm Chart
+      container('helm') {
+        stage('Package Helm Chart') {
+          dir('charts') {
+            sh 'helm init --client-only'
+            sh 'helm package kube7days'
+          }
+        }
+      }
 
-    //   // Publish Helm Chart to Chart Museum
-    //   // IMPORTANT: This will not overwrite a Chart of the same version.
-    //   //            If the Chart has changed then the Chart.yaml version field must be modified.
-    //   container('curl') {
-    //     stage('Publish Helm Chart') {
-    //       dir('charts') {
-    //         withCredentials([usernamePassword(credentialsId: 'chart-museum', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {              
-    //           def filename = sh returnStdout: true, script: 'ls *tgz'
-    //           withEnv(['FILENAME=' + filename.trim()]) {
-    //             sh 'curl --data-binary "@${FILENAME}" "https://${USER}:${PASSWORD}@chartmuseum.kube.momenton.com.au/api/charts"'
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
+      // Publish Helm Chart to Chart Museum
+      // IMPORTANT: This will not overwrite a Chart of the same version.
+      //            If the Chart has changed then the Chart.yaml version field must be modified.
+      container('curl') {
+        stage('Publish Helm Chart') {
+          dir('charts') {
+            withCredentials([usernamePassword(credentialsId: 'chart-museum', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {              
+              def filename = sh returnStdout: true, script: 'ls *tgz'
+              withEnv(['FILENAME=' + filename.trim()]) {
+                sh 'curl --data-binary "@${FILENAME}" "https://${USER}:${PASSWORD}@chartmuseum.do.citopro.com/api/charts"'
+              }
+            }
+          }
+        }
+      }
 
-    //   // Deploy Helm Chart
-    //   container('helm') {
-    //     stage('Deploy Helm Chart') {
-    //       dir('charts/infrastructure-docs') {
-    //         env.chartVersion = sh returnStdout: true, script: 'grep version Chart.yaml | sed "s/version: //"'
-    //       }
-    //       withCredentials([usernamePassword(credentialsId: 'chart-museum', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
-    //         sh 'helm repo add momenton "https://${USER}:${PASSWORD}@chartmuseum.kube.momenton.com.au"'
-    //       }
-    //       sh 'helm repo update'
-    //       withEnv(['CHART_VERSION=' + env.chartVersion.trim(), 'VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
-    //         output = sh returnStdout: true, script: """
-    //           helm upgrade --install infrastructure-docs \
-    //             --namespace production \
-    //             --set image.tag=${VERSION}.${COMMIT} \
-    //             momenton/infrastructure-docs --version ${CHART_VERSION}
-    //         """
+      // Deploy Helm Chart
+      container('helm') {
+        stage('Deploy Helm Chart') {
+          dir('charts/kube7days') {
+            env.chartVersion = sh returnStdout: true, script: 'grep version Chart.yaml | sed "s/version: //"'
+          }
+          withCredentials([usernamePassword(credentialsId: 'chart-museum', passwordVariable: 'PASSWORD', usernameVariable: 'USER')]) {
+            sh 'helm repo add citopro "https://${USER}:${PASSWORD}@cchartmuseum.do.citopro.comu"'
+          }
+          sh 'helm repo update'
+          withEnv(['CHART_VERSION=' + env.chartVersion.trim(), 'VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
+            output = sh returnStdout: true, script: """
+              helm upgrade --install kube7days \
+                --namespace production \
+                --set image.tag=${VERSION}.${COMMIT} \
+                citopro/kube7days --version ${CHART_VERSION}
+            """
 
-    //         slackSend color: 'good', message: "```" + output + "```"
-    //       }
-    //     }
-    //   }
+            slackSend color: 'good', message: "```" + output + "```"
+          }
+        }
+      }
 
     }
 }
