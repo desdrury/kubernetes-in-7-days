@@ -52,7 +52,7 @@ spec:
             - --upstream-url=http://kube7days.production.svc.cluster.local
             - --resources=uri=/*
             - --match-claims=email=^.*@momenton.com.au$
-            - --match-claims=email=^desdrury@gmail.com$
+            # - --match-claims=email=^desdrury@gmail.com$
           ports:
           - containerPort: 3000
           livenessProbe:
