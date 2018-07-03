@@ -8,7 +8,8 @@ This document has links to resources that will be useful for the _Kubernetes in 
 
 | Name      | Description               |
 |:----------|:--------------------------|
-| [Kubernetes Documentation](https://kubernetes.io/docs/home/)| Kubernetes documentation. |
+| [Kubernetes Documentation](https://kubernetes.io/docs/home/)| _Kubernetes_ documentation. |
+| [Kubernetes Glossary](https://kubernetes.io/docs/reference/glossary/) | Glossary of _Kubernetes_ terms. |
 | [Kubernetes Tutorials](https://kubernetes.io/docs/tutorials/) | Totorials for a number of Kubernetes aspects. |
 | [Kubernetes API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/) | Detailed information on the _Kubernetes _Resources. |
 | [kubectl Installation](https://kubernetes.io/docs/tasks/tools/install-kubectl/) | Instructions for how to install `kubectl`. |
@@ -20,3 +21,5 @@ This document has links to resources that will be useful for the _Kubernetes in 
 | [Minikube Add-Ons](https://github.com/kubernetes/minikube/blob/e3194f60f718c02f6c76acecebc2b5f2ac996b51/docs/addons.md) | Details of the Add-Ons available on _Minikube_. |
 | [Minikube Tutorial](https://kubernetes.io/docs/tutorials/hello-minikube/#create-a-minikube-cluster) | Another tutorial for _Minikube_. |
 | [Run a Stateless Application Using a Deployment](https://kubernetes.io/docs/tasks/run-application/) | Example of how to use `Deployments`. |
+| [Creating a single master cluster with kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) | Instructions to create a single master cluster using `kubeadm`. |
+| [kubeadm Reference](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm/) | Detailed information on how to use `kubeadm`. |

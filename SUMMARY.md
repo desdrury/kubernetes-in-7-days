@@ -17,9 +17,10 @@
 * [Overview](02-hello-kubernetes-with-minikube/02-01.md)
 * [Kubernetes Architecture](02-hello-kubernetes-with-minikube/02-02.md)
 * [Kubernetes Manifests](02-hello-kubernetes-with-minikube/02-03.md)
-* [Helm for Package Management](02-hello-kubernetes-with-minikube/02-04.md)
-* [Deploying a Complex Application](02-hello-kubernetes-with-minikube/02-05.md)
-* [Homework](02-hello-kubernetes-with-minikube/02-06.md)
+* [Kubectl Config](02-hello-kubernetes-with-minikube/02-04.md)
+* [Helm for Package Management](02-hello-kubernetes-with-minikube/02-05.md)
+* [Deploying a Complex Application](02-hello-kubernetes-with-minikube/02-06.md)
+* [Homework](02-hello-kubernetes-with-minikube/02-07.md)
 
 ### Day Three
 
