@@ -25,6 +25,11 @@
 ### Day Three
 
 * [Overview](03-building-a-complex-cluster/03-01.md)
+* [Install a Multi-Node Cluster](03-building-a-complex-cluster/03-02.md)
+* [Explore the Cluster](03-building-a-complex-cluster/03-03.md)
+* [Deploy Initial Workloads](03-building-a-complex-cluster/03-04.md)
+* [Deploy first-app with Ingress](03-building-a-complex-cluster/03-05.md)
+* [Homework](03-building-a-complex-cluster/03-06.md)
 
 ### Day Four
 
