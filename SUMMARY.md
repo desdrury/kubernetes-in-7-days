@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 
+
 ### Day One
 
 * [Overview](01-getting-started-with-kubernetes/01-01.md)
@@ -22,6 +23,7 @@
 * [Deploying a Complex Application](02-hello-kubernetes-with-minikube/02-06.md)
 * [Homework](02-hello-kubernetes-with-minikube/02-07.md)
 
+
 ### Day Three
 
 * [Overview](03-building-a-complex-cluster/03-01.md)
@@ -31,25 +33,36 @@
 * [Deploy first-app with Ingress](03-building-a-complex-cluster/03-05.md)
 * [Homework](03-building-a-complex-cluster/03-06.md)
 
+
 ### Day Four
 
-* [Overview](04-security-and-access-control/04-01.md)
+* [Overview](04-monitoring-and-health-checks/04-01.md)
+* [Probes and Self Healing](04-monitoring-and-health-checks/04-02.md)
+* [Prometheus](04-monitoring-and-health-checks/04-03.md)
+* [Grafana](04-monitoring-and-health-checks/04-04.md)
+* [Grafana Dashboards](04-monitoring-and-health-checks/04-05.md)
+* [Homework](04-monitoring-and-health-checks/04-06.md)
+
 
 ### Day Five
 
-* [Overview](05-monitoring-and-health-checks/05-01.md)
+* [Overview](05-security-and-access-control/05-01.md)
+
 
 ### Day Six
 
 * [Overview](06-persistence-and-databases/06-01.md)
 
+
 ### Day Seven
 
 * [Overview](07-ci-cd-solutions/07-01.md)
 
+
 ### Wrap Up
 
 * [Wrap Up](08-wrap-up/08-01.md)
+
 
 ### Reference
 
