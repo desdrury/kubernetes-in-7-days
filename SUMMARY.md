@@ -46,12 +46,12 @@
 
 ### Day Five
 
-* [Overview](05-security-and-access-control/05-01.md)
+* [Overview](05-persistence-and-databases/05-01.md)
 
 
 ### Day Six
 
-* [Overview](06-persistence-and-databases/06-01.md)
+* [Overview](06-security-and-access-control/06-01.md)
 
 
 ### Day Seven
