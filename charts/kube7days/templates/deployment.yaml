@@ -51,7 +51,7 @@ spec:
             - --encryption-key=MsVRjD36bfAxfBvHUKUjXOTPXaItDThn    # 32 bytes string
             - --upstream-url=http://kube7days.production.svc.cluster.local
             - --resources=uri=/*
-            - --match-claims=email=^(.*@momenton.com.au|desdrury@gmail.com|shraddhapackt@gmail.com)$
+            - --match-claims=email=^(.*@momenton.com.au|desdrury@gmail.com|shraddhapackt@gmail.com|james.buckett@gmail.com)$
             # - --match-claims=email=^desdrury@gmail.com$
           ports:
           - containerPort: 3000
