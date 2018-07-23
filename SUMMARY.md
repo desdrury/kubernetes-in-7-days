@@ -47,15 +47,30 @@
 ### Day Five
 
 * [Overview](05-persistence-and-databases/05-01.md)
+* [`PVs` and `PVCs`](05-persistence-and-databases/05-02.md)
+* [Install Rook](05-persistence-and-databases/05-03.md)
+* [Explore Rook](05-persistence-and-databases/05-04.md)
+* [Deploy a HA database](05-persistence-and-databases/05-05.md)
+* [Homework](05-persistence-and-databases/05-06.md)
 
 
 ### Day Six
 
 * [Overview](06-security-and-access-control/06-01.md)
+* [Overview](06-security-and-access-control/06-01.md)
+* [Overview](06-security-and-access-control/06-01.md)
+* [Overview](06-security-and-access-control/06-01.md)
+* [Overview](06-security-and-access-control/06-01.md)
+* [Overview](06-security-and-access-control/06-01.md)
 
 
 ### Day Seven
 
+* [Overview](07-ci-cd-solutions/07-01.md)
+* [Overview](07-ci-cd-solutions/07-01.md)
+* [Overview](07-ci-cd-solutions/07-01.md)
+* [Overview](07-ci-cd-solutions/07-01.md)
+* [Overview](07-ci-cd-solutions/07-01.md)
 * [Overview](07-ci-cd-solutions/07-01.md)
 
 
