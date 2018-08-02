@@ -43,9 +43,9 @@ spec:
           name: oauth-proxy
           args:
             - --listen=0.0.0.0:3000
-            - --discovery-url=https://momenton.au.auth0.com/
-            - --client-id=mHiLGioPPhblrOd4XT2I7saGckMozIyZ
-            - --client-secret=V5cwdLXpcgGE2tC_cnvwedpxUZIDe6NHNncGoDJXT_IAGIPl36rbxUiKTWi0r02W
+            - --discovery-url=https://citopro.au.auth0.com/
+            - --client-id=ia77819ai6xH9IwNW2ljITvqeQCHyY1o
+            - --client-secret=k5vaqhUBJW2uUaLJFKi0m0Iv60Jf_NZvy6_yDZQSF2V81VccnimP-Cbpc0zTvnbs
             - --redirection-url=https://kube7days.do.citopro.com
             - --enable-refresh-tokens=true
             - --encryption-key=MsVRjD36bfAxfBvHUKUjXOTPXaItDThn    # 32 bytes string
