@@ -57,11 +57,12 @@
 ### Day Six
 
 * [Overview](06-security-and-access-control/06-01.md)
-* [Overview](06-security-and-access-control/06-01.md)
-* [Overview](06-security-and-access-control/06-01.md)
-* [Overview](06-security-and-access-control/06-01.md)
-* [Overview](06-security-and-access-control/06-01.md)
-* [Overview](06-security-and-access-control/06-01.md)
+* [RBAC](06-security-and-access-control/06-02.md)
+* [Keycloak](06-security-and-access-control/06-03.md)
+* [Configuring Kubernetes to use OIDC](06-security-and-access-control/06-04.md)
+* [Securing the Kubernetes Dashboard](06-security-and-access-control/06-05.md)
+* [Securing `kubectl`](06-security-and-access-control/06-06.md)
+* [Homework](06-security-and-access-control/06-07.md)
 
 
 ### Day Seven
