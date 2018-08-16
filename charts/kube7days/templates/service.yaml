@@ -14,10 +14,12 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    {{- if .Values.oauth }}
     - port: 3000
       targetPort: 3000
       protocol: TCP
       name: oauth
+    {{ end }}
   selector:
     app: {{ template "infrastructure-docs.name" . }}
     release: {{ .Release.Name }}

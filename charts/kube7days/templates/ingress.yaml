@@ -26,6 +26,7 @@ spec:
   {{- end }}
 {{- end }}
   rules:
+  {{- if .Values.oauth }}
   {{- range .Values.ingress.hosts }}
     - host: {{ . }}
       http:
@@ -34,5 +35,16 @@ spec:
             backend:
               serviceName: {{ $fullName }}
               servicePort: 3000
+  {{- end }}
+  {{- else }}
+  {{- range .Values.ingress.hosts }}
+    - host: {{ . }}
+      http:
+        paths:     
+          - path: {{ $ingressPath }}
+            backend:
+              serviceName: {{ $fullName }}
+              servicePort: 80
+  {{- end }}
   {{- end }}
 {{- end }}

@@ -39,6 +39,7 @@ spec:
               port: http
           resources:
 {{ toYaml .Values.resources | indent 12 }}
+        {{- if .Values.oauth }}
         - image: quay.io/gambol99/keycloak-proxy:v2.1.1
           name: oauth-proxy
           args:
@@ -66,7 +67,8 @@ spec:
               path: /oauth/health
               port: 3000
             initialDelaySeconds: 3
-            timeoutSeconds: 2 
+            timeoutSeconds: 2
+        {{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

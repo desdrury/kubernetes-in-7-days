@@ -71,7 +71,7 @@
 * [Overview of CI/CD](07-ci-cd-solutions/07-02.md)
 * [Jenkins](07-ci-cd-solutions/07-03.md)
 * [Pipeline as Code](07-ci-cd-solutions/07-04.md)
-* [Create Pipeline](07-ci-cd-solutions/07-05.md)
+* [Create a Pipeline](07-ci-cd-solutions/07-05.md)
 * [Homework](07-ci-cd-solutions/07-06.md)
 
 
