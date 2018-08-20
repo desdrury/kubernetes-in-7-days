@@ -137,9 +137,25 @@ podTemplate(label: label,
           }
           sh 'helm repo update'
           withEnv(['CHART_VERSION=' + env.chartVersion.trim(), 'VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
+            
+            // Oauth protected
             output = sh returnStdout: true, script: """
               helm upgrade --install kube7days \
                 --namespace production \
+                --set image.tag=${VERSION}.${COMMIT} \
+                citopro/kube7days --version ${CHART_VERSION}
+            """
+
+            slackSend color: 'good', message: "```" + output + "```"
+
+            // No OAuth protection
+            output = sh returnStdout: true, script: """
+              helm upgrade --install kube7days-noauth \
+                --namespace production \
+                --set oauth=false \
+                --set ingress.hosts[0]=kube7days.staging.do.citopro.com \
+                --set ingress.tls[0].secretName=kube7days-noauth-tls \
+                --set ingress.tls[0].hosts[0]=kube7days.staging.do.citopro.com \
                 --set image.tag=${VERSION}.${COMMIT} \
                 citopro/kube7days --version ${CHART_VERSION}
             """
