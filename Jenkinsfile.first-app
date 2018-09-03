@@ -55,7 +55,6 @@ podTemplate(label: label,
               sh 'docker push desdrury/first-app:latest'
             }
           }
-
         }
       }
 
