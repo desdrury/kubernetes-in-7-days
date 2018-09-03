@@ -18,7 +18,7 @@ spec:
           - --discovery-url=https://keycloak.192.168.26.11.nip.io/auth/realms/kube7days
           - --skip-openid-provider-tls-verify
           - --client-id=kubernetes
-          - --client-secret=41602dd9-3a2b-47e6-9927-c09ed3095e36
+          - --client-secret=7957ef10-8772-480c-95fb-7ea3d5a94884
           - --redirection-url=https://dashboard.192.168.26.11.nip.io
           - --enable-refresh-tokens=true
           - --encryption-key=MsVRjD36bfAxfBvHUKUjXOTPXaItDThn    # 32 bytes string

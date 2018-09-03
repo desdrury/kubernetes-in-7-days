@@ -23,14 +23,6 @@ podTemplate(label: label,
   ]) {
 
     node(label) {
-      
-      // Checkout code    
-      container('jnlp') {
-        stage('Checkout code') {
-          git credentialsId: 'desdrury-https-github', url: 'https://github.com/desdrury/kubernetes-in-7-days.git'
-          env.commit = sh returnStdout: true, script: 'git rev-parse HEAD'
-        }
-      }
 
       // Build and push image
       container('docker') {
@@ -70,7 +62,7 @@ podTemplate(label: label,
                   --set image.repository=desdrury/first-app \
                   --set image.tag=${VERSION}.${COMMIT} \
                   --set ingress.enabled=true \
-                  --set ingress.hosts[0]=first-app-cicd.do.citopro.com \
+                  --set ingress.hosts[0]=first-app-cicd.192.168.26.11.nip.io \
                   first-app
               """
             }
