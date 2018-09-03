@@ -23,6 +23,14 @@ podTemplate(label: label,
   ]) {
 
     node(label) {
+      
+      // Checkout code    
+      container('jnlp') {
+        stage('Checkout code') {
+          checkout scm
+          env.commit = sh returnStdout: true, script: 'git rev-parse HEAD'
+        }
+      }
 
       // Build and push image
       container('docker') {
