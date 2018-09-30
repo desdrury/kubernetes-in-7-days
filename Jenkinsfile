@@ -163,18 +163,21 @@ podTemplate(label: label,
             slackSend color: 'good', message: "```" + output + "```"
 
             // Packt
-            // output = sh returnStdout: true, script: """
-            //   helm upgrade --install kube7days-packt \
-            //     --namespace production \
-            //     --set oauth=false \
-            //     --set ingress.hosts[0]=kube7days.info \
-            //     --set ingress.tls[0].secretName=kube7days-packt-tls \
-            //     --set ingress.tls[0].hosts[0]=kube7days.info \
-            //     --set image.tag=${VERSION}.${COMMIT} \
-            //     citopro/kube7days --version ${CHART_VERSION}
-            // """
+            output = sh returnStdout: true, script: """
+              helm upgrade --install kube7days-packt \
+                --namespace production \
+                --set oauth=false \
+                --set ingress.annotations."nginx\.ingress\.kubernetes\.io/auth-type"=basic \
+                --set ingress.annotations."nginx\.ingress\.kubernetes\.io/auth-secret"=basic-auth \
+                --set ingress.annotations."nginx\.ingress\.kubernetes\.io/auth-realm"='Authentication Required - kube7days' \
+                --set ingress.hosts[0]=kube7days.info \
+                --set ingress.tls[0].secretName=kube7days-packt-tls \
+                --set ingress.tls[0].hosts[0]=kube7days.info \
+                --set image.tag=${VERSION}.${COMMIT} \
+                citopro/kube7days --version ${CHART_VERSION}
+            """
 
-            // slackSend color: 'good', message: "```" + output + "```"
+            slackSend color: 'good', message: "```" + output + "```"
           }
         }
       }
