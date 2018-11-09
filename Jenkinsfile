@@ -84,21 +84,21 @@ podTemplate(label: label,
       }
 
       // Scan image for vulnerabilities
-      container('klar') {
-        stage('Scan image') {
-          withCredentials([usernamePassword(credentialsId: 'docker-user', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER')]) {
-            withEnv([ \
-              'VERSION=' + env.version.trim(), \
-              'COMMIT=' + env.commit.trim(), \
-              'CLAIR_ADDR=https://clair.do.citopro.com:443', \
-              'CLAIR_OUTPUT=High', \
-              'CLAIR_THRESHOLD=21'
-              ]) {
-              sh "/klar docker-registry.do.citopro.com/kube7days/documentation:${VERSION}.${COMMIT}"
-            }
-          }
-        }
-      }
+      // container('klar') {
+      //   stage('Scan image') {
+      //     withCredentials([usernamePassword(credentialsId: 'docker-user', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USER')]) {
+      //       withEnv([ \
+      //         'VERSION=' + env.version.trim(), \
+      //         'COMMIT=' + env.commit.trim(), \
+      //         'CLAIR_ADDR=https://clair.do.citopro.com:443', \
+      //         'CLAIR_OUTPUT=High', \
+      //         'CLAIR_THRESHOLD=21'
+      //         ]) {
+      //         sh "/klar docker-registry.do.citopro.com/kube7days/documentation:${VERSION}.${COMMIT}"
+      //       }
+      //     }
+      //   }
+      // }
 
       // Package Helm Chart
       container('helm') {
